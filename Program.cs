@@ -112,18 +112,39 @@ static void BinaryClassesDemo(string filePath)
 }
     */
 
-Trainee trainee = new Trainee();
-//Console.WriteLine("Enter File name with .txt extension");
-//string fileName = Console.ReadLine() ?? "trainees.txt";
-string fileName = "trainees.txt"; // Default file name
+//TraineeDemo();
+static void TraineeDemo()
+{
+    Trainee trainee = new Trainee();
+    //Console.WriteLine("Enter File name with .txt extension");
+    //string fileName = Console.ReadLine() ?? "trainees.txt";
+    string fileName = "trainees.txt"; // Default file name
 
-Console.WriteLine("Enter Trainee Name:");
-trainee.Name = Console.ReadLine() ?? string.Empty;
-Console.WriteLine("Enter Trainee Id:");
-trainee.Id = Console.ReadLine() ?? string.Empty;
-Console.WriteLine("Enter Trainee Course:");
-trainee.Course = Console.ReadLine() ?? string.Empty;
+    Console.WriteLine("Enter Trainee Name:");
+    trainee.Name = Console.ReadLine() ?? string.Empty;
+    Console.WriteLine("Enter Trainee Id:");
+    trainee.Id = Console.ReadLine() ?? string.Empty;
+    Console.WriteLine("Enter Trainee Course:");
+    trainee.Course = Console.ReadLine() ?? string.Empty;
 
-//trainee.DisplayInfo();
-trainee.AddTrainee(trainee, fileName);
-trainee.ReadTrainee(fileName);
+    //trainee.DisplayInfo();
+    trainee.AddTrainee(trainee, fileName);
+    trainee.ReadTrainee(fileName);
+}
+
+//CafeDemo();
+static void CafeDemo()
+{
+    Cafe cafe = new Cafe();
+    string fileName = "trainees.txt"; // Default file name
+
+    Console.WriteLine("Enter Cafe Name:");
+    cafe.Name = Console.ReadLine() ?? string.Empty;
+    Console.WriteLine("Enter Order Number:");
+    cafe.OrderNumber = int.Parse(Console.ReadLine() ?? "0");
+    Console.WriteLine("Enter Order Details:");
+    cafe.OrderDetails = Console.ReadLine() ?? string.Empty;
+
+    cafe.AddOrder(cafe, fileName);
+    cafe.ReadOrders(fileName);
+}
