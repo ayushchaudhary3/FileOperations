@@ -2,35 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace FileOperationsIO
 {
-    internal class Trainee
+    internal class LinqProduct
     {
-        public string Name { get; set; }
-        public string Id { get; set; } = string.Empty;
-        public string Course { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public double Price { get; set; }
+        public DateTime date { get; set; }
 
-        public Trainee() { }
-        public Trainee(string name, string id, string course)
+        public LinqProduct() { }
+        public LinqProduct(int id, string name, double price, DateTime date)
         {
-            Name = name;
             Id = id;
-            Course = course;
+            Name = name;
+            Price = price;
+            this.date = date;
         }
-        public void DisplayInfo()
+
+        public void DisplayProduct()
         {
-            Console.WriteLine($"Name: {Name}, ID: {Id}, Course: {Course}");
+            Console.WriteLine($"ID: {Id}, Name: {Name}, Price: {Price}, Date: {date}");
         }
-        public void AddTrainee(Trainee trainee, string filepath)
+        public void AddProduct(LinqProduct product, string filepath)
         {
             try
             {
                 using (StreamWriter writer = new StreamWriter(filepath, true))
                 {
-                    writer.WriteLine($"{trainee.Name},{trainee.Id},{trainee.Course}");
+                    writer.WriteLine($"{product.Id},{product.Name},{product.Price},{product.date}");
                 }
             }
             catch (IOException ex)
@@ -42,9 +44,9 @@ namespace FileOperationsIO
                 Console.WriteLine("An unexpected error occurred: " + ex.Message);
             }
         }
-        public void ReadTrainee(string filepath)
+        public void ViewProducts(string filepath)
         {
-            Console.WriteLine($"Reading trainees from {filepath}:");
+            Console.WriteLine($"Reading products from {filepath}:");
             try
             {
                 using (StreamReader reader = new StreamReader(filepath))
@@ -68,19 +70,6 @@ namespace FileOperationsIO
             {
                 Console.WriteLine("An unexpected error occurred: " + ex.Message);
             }
-        }
-        public void JsonDemo(Trainee trainee)
-        {
-            // This method can be used to serialize the Trainee object to JSON format.
-            // You can use libraries like Newtonsoft.Json or System.Text.Json for serialization.
-            // Example using System.Text.Json:
-            // return JsonSerializer.Serialize(this);
-            string jsonString = JsonSerializer.Serialize(trainee);
-            Console.WriteLine($"Serialized JSON string: {jsonString}");
-
-            Trainee trn = JsonSerializer.Deserialize<Trainee>(jsonString);
-            Console.WriteLine($"Deserialized Trainee: Name={trn.Name}, Id={trn.Id}, Course={trn.Course}");
-
         }
     }
 }

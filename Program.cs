@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using FileOperationsIO;
 using System;
+using System.Text.Json;
 
 Console.WriteLine("Hello, World! Welcome to File I/ O Operations");
 string? filePath = "Book.txt";
@@ -147,4 +148,105 @@ static void CafeDemo()
 
     cafe.AddOrder(cafe, fileName);
     cafe.ReadOrders(fileName);
+}
+
+//ProductDemo();
+static void ProductDemo()
+{
+    while (true)
+    {
+        Console.WriteLine("\n--- Product Management System ---");
+        Console.WriteLine("1. Add New Product");
+        Console.WriteLine("2. View All Products");
+        Console.WriteLine("3. Exit");
+        Console.Write("Choose an option (1-3): ");
+        string? choice = Console.ReadLine();
+        Product product = new Product();
+        switch (choice)
+        {
+            case "1":
+                Console.Write("Enter Product ID: ");
+                product.ProductID = int.Parse(Console.ReadLine() ?? "0");
+                Console.Write("Enter Product Name: ");
+                product.Name = Console.ReadLine() ?? string.Empty;
+                Console.Write("Enter Product Price: ");
+                product.Price = decimal.Parse(Console.ReadLine() ?? "0.0");
+                product.AddProduct(product, "products.txt");
+                break;
+            case "2":
+                product.ShowProducts("products.txt");
+                break;
+            case "3":
+                return;
+            default:
+                Console.WriteLine("Invalid option. Please try again.");
+                break;
+        }
+    }
+}
+
+//LinqDemos();
+static void LinqDemos()
+{
+    LinqDemo Linq = new LinqDemo();
+
+    Linq.BasicLinqQuery();
+    Linq.UsingWhereLinq();
+    Linq.UsingOrderByLinq();
+    Linq.LinqOfTypeArraylist();
+    Linq.TakeLinq();
+    Linq.GroupByLinq();
+    Linq.OrderByThenByLinq();
+    Linq.FirstOrFirstDefault();
+    Linq.SingleOrSingleDefault();
+}
+
+//LinqPRacticeDemo();
+static void LinqPRacticeDemo()
+{
+    LinqPractice linqPractice = new LinqPractice();
+    linqPractice.BasicLinqQuery();
+    linqPractice.UsingWhereLinq();
+    linqPractice.UsingOrderByLinq();
+    linqPractice.UsingGroupByLinq();
+    linqPractice.SelectOrSelectManyLinq();
+    linqPractice.UsingTakeOrTakeWhileLinq();
+    linqPractice.UsingFirstOrFirstDefault();
+    linqPractice.UsingSingleOrSingleDefault();
+    linqPractice.UsingOrderByThenByLinq();
+}
+
+//JsonSerializationDemo();
+static void JsonSerializationDemo()
+{
+    Trainee trainee = new Trainee();
+    trainee.Id = "T010";
+    trainee.Name = "John Mathew";
+    trainee.Course = "C# Programming";
+    trainee.JsonDemo(trainee);
+}
+
+//SynchronousGetnumbers();
+static void SynchronousGetnumbers()
+{
+    Console.WriteLine($"Start: {DateTime.Now.ToLongTimeString()}");
+    var numbers = Asynchronous.GetNumbers(1, 10);
+    foreach (var number in numbers)
+    {
+        Console.WriteLine($"Number: {number}");
+    }
+    Console.WriteLine($"End: {DateTime.Now.ToLongTimeString()}");
+}
+
+AsyncGetNumbers();
+static async void AsyncGetNumbers()
+{
+    //AsynchronousStreamsDemos asynchronousStreamsDemos = new AsynchronousStreamsDemos();
+    Console.WriteLine($"Start: {DateTime.Now.ToLongTimeString()}");
+    var numbersAsync = Asynchronous.GetNumbersAsync(1, 11);
+    await foreach (var number in numbersAsync)
+    {
+        Console.WriteLine(number);
+    }
+    Console.WriteLine($"End: {DateTime.Now.ToLongTimeString()}");
 }
